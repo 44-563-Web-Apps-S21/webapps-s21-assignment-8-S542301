@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Demo</title>
+    <style>
+        button {
+            padding: 16px;
+            width: 150px;
+            border: none;
+            background: #29c5da;
+            color: rgb(27, 165, 68);
+            font-weight: 900;
+        }
+
+        #quote {
+            border: 2px solid rgb(226, 62, 218);
+            align-items: center;
+            font-weight: 600;
+            font-style: bold;
+            text-align: center;
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+
+        }
+
+        .intro {
+            margin: auto;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="intro">
+        <h1>Single Line Joke</h1>
+        <small>Click on the button to get new joke!!!</small>
+        <div>
+            <button onclick="getAdvice()">Get a Joke</button>
+        </div>
+    </div>
+
+    <div id="joke"></div>
+    <script>
+        const getAdvice = () => {
+            fetch('http://127.0.0.1:3001').then(
+                (res) => {
+                    console.log(res)
+                    return res.text()
+                }
+            ).then(data => {
+                console.log(data)
+                document.getElementById("joke").innerHTML = data
+            }).catch(err => {
+                document.getElementById("joke").innerHTML = err
+            })
+        }
+    </script>
+</body>
+</html>
